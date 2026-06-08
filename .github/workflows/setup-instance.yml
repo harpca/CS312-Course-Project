@@ -40,11 +40,12 @@ jobs:
         --instance-type t4g.small \
         --key-name MC-Key \
         --security-group-ids sg-04761a3598cb75765 \
+        --associate-public-ip-address \
         --query "Instances[0].InstanceId" \
         --output text \
         --tag-specifications 'ResourceType=instance, Tags=[{Key=Name, Value=Minecraft-Server-AUTO}]') >> "$GITHUB_ENV"
     - name: Wait for instance to start
-      run: aws ec2 wait instance-status-ok --instance-ids "$MC_INSTANCE"
+      run: aws ec2 wait instance-running --instance-ids "$MC_INSTANCE"
     - name: Get the instance IP
       run: | 
         echo MC_IP=$(aws ec2 describe-instances \
