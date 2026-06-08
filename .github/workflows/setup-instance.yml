@@ -48,9 +48,9 @@ jobs:
     - name: Get the instance IP
       run: | 
         echo MC_IP=$(aws ec2 describe-instances \
-        --instance-ids "$MC_INSTANCE"\
-        -- query "Reservations[0].Instances[0].PublicIPAddress" \
-        -- output text) >> "$GITHUB_ENV"
+        --instance-ids "$MC_INSTANCE" \
+        --query "Reservations[0].Instances[0].PublicIPAddress" \
+        --output text) >> "$GITHUB_ENV"
     - name: Create hosts.ini
       run: echo "[mcservers]\n$MC_IP\n" > hosts.ini
     - name: Print hosts
