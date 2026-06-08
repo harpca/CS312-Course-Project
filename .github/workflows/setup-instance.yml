@@ -40,4 +40,6 @@ jobs:
         --instance-type t4g.small \
         --key-name MC-Key \
         --security-group-ids sg-04761a3598cb75765 \
+        --query "Instances[0].PublicIpAddress" \
+        --output text \
         --tag-specifications 'ResourceType=instance, Tags=[{Key=Name, Value=Minecraft-Server-AUTO}]'
