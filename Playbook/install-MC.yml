@@ -10,7 +10,39 @@
         name: java-25-amazon-corretto-headless
         state: present
 
+    - name: Get MC server
+      ansible.builtin.shell: |
+        mkdir /opt/Minecraft
+        cd /opt/Minecraft
+        wget https://piston-data.mojang.com/v1/objects/97ccd4c0ed3f81bbb7bfacddd1090b0c56f9bc51/server.jar
+        
+    - name: Run MC server
+      ansible.builtin.shell: |
+        cd /opt/Minecraft
+        java -Xmx1300M -Xms1300M -jar server.jar nogui
+        echo "eula=true" > eula.txt
+
+    - name: Create user
+      ansible.builtin.shell: |
+        sudo adduser minecraft-steve
+        chown -R minecraft-steve:minecraft-steve /opt/minecraft
+        chmod 777 /opt/minecraft
+
+    - name: Create MC service file
+      copy:
+        src: "Files/minecraft.service"
+        dest: "/etc/systemd/system/minecraft.service"
+        owner: ec2-user
+        group: ec2-user
+        mode: '0644'
+
+    - name: Install MC server
+      ansible.builtin.shell: |
+        systemctl daemon-reload
+        systemctl enable minecraft.service
+
     - name: Start Minecraft server
       service:
         name: minecraft
         state: started
+        
