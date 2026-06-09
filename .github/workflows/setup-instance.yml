@@ -52,7 +52,6 @@ jobs:
         --instance-ids "$MC_INSTANCE" \
         --query "Reservations[*].Instances[*].PublicIpAddress" \
         --output text) >> "$GITHUB_ENV"
-        echo "Public IP: $MC_IP"
     - name: Create hosts.ini
       run: echo "[mcservers]\n$MC_IP\n" > hosts.ini
     - name: Print hosts
