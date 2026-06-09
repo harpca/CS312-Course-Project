@@ -40,7 +40,7 @@ jobs:
         --instance-type t4g.small \
         --key-name MC-Key \
         --security-group-ids sg-04761a3598cb75765 \
-        --associate-public-ip-address \
+        --subnet-id subnet-06eccdfee04a99646 \
         --query "Instances[0].InstanceId" \
         --output text \
         --tag-specifications 'ResourceType=instance, Tags=[{Key=Name, Value=Minecraft-Server-AUTO}]') >> "$GITHUB_ENV"
