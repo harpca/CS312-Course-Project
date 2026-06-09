@@ -65,8 +65,8 @@ jobs:
         sudo apt install -y ansible
     - name: Create private key to talk to the runner
       run: |
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > MC_Key.pem
-        chmod 600 MC_Key.pem
+        echo ${{ secrets.SSH_PRIVATE_KEY }} > MC-Key.pem
+        chmod 600 MC-Key.pem
     - name: Run Ansible playbook
-      run: ansible-playbook -i hosts.ini Playbook/install-MC.yml --private-key MC_Key.pem
+      run: ansible-playbook -i hosts.ini Playbook/install-MC.yml --private-key MC-Key.pem
     
