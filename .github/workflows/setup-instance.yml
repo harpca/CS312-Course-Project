@@ -69,7 +69,8 @@ jobs:
       run: |
         echo "$PRIVATE_KEY" > MC-Key.pem
         chmod 600 MC-Key.pem
-        cat MC-Key.pem
     - name: Run Ansible playbook
-      run: ansible-playbook -i hosts.ini Playbook/install-MC.yml --private-key MC-Key.pem
+      run: |
+        export ANSIBLE_HOST_KEY_CHECKING=False
+        ansible-playbook -i hosts.ini Playbook/install-MC.yml --private-key MC-Key.pem
     
