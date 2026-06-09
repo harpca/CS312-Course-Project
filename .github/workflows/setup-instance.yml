@@ -22,6 +22,7 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
   AWS_REGION: us-east-1
+  PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "greet"
@@ -65,7 +66,7 @@ jobs:
         sudo apt install -y ansible
     - name: Create private key to talk to the runner
       run: |
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > MC-Key.pem
+        echo -e $PRIVATE_KEY > MC-Key.pem
         chmod 600 MC-Key.pem
         cat MC-Key.pem
     - name: Run Ansible playbook
