@@ -72,5 +72,5 @@ jobs:
     - name: Run Ansible playbook
       run: |
         export ANSIBLE_HOST_KEY_CHECKING=False
-        ansible-playbook -i hosts.ini Playbook/install-MC.yml --private-key MC-Key.pem
+        ansible-playbook -i hosts.ini Playbook/install-MC.yml --private-key MC-Key.pem -u ec2-user
     
