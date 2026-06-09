@@ -41,7 +41,7 @@ jobs:
         --key-name MC-Key \
         --security-group-ids sg-04761a3598cb75765 \
         --subnet-id subnet-06eccdfee04a99646 \
-        --query "Instances[0].InstanceId" \
+        --query 'Instances[0].InstanceId' \
         --output text \
         --tag-specifications 'ResourceType=instance, Tags=[{Key=Name, Value=Minecraft-Server-AUTO}]') >> "$GITHUB_ENV"
     - name: Wait for instance to start
@@ -50,10 +50,10 @@ jobs:
       run: | 
         echo MC_IP=$(aws ec2 describe-instances \
         --instance-ids "$MC_INSTANCE" \
-        --query "Reservations[*].Instances[*].PublicIPAddress" \
+        --query 'Reservations[*].Instances[*].PublicIPAddress' \
         --output text) >> "$GITHUB_ENV"
         echo "Public IP: $MC_IP"
-   # - name: Create hosts.ini
-   #   run: echo "[mcservers]\n$MC_IP\n" > hosts.ini
-   # - name: Print hosts
-   #   run: cat hosts.ini
+     - name: Create hosts.ini
+       run: echo "[mcservers]\n$MC_IP\n" > hosts.ini
+     - name: Print hosts
+       run: cat hosts.ini
