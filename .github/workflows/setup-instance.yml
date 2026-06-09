@@ -31,7 +31,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
+    # Sends a copy of the repository to the runner
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    # Creates the EC2 instance and gets the public IP address
     - name: Create instance
       run: | 
         echo MC_INSTANCE=$(aws ec2 run-instances \
@@ -52,7 +55,18 @@ jobs:
         --instance-ids "$MC_INSTANCE" \
         --query "Reservations[*].Instances[*].PublicIpAddress" \
         --output text) >> "$GITHUB_ENV"
+      # Creates the Ansible hosts.ini file with with the IP address
     - name: Create hosts.ini
-      run: echo "[mcservers]\n$MC_IP\n" > hosts.ini
-    - name: Print hosts
-      run: cat hosts.ini
+      run: echo -e "[mcservers]\n$MC_IP\n" > hosts.ini
+      # Install and update Ansible
+    - name: Install Ansible
+      run: |
+        sudo apt update
+        sudo apt install -y ansible
+    - name: Create private key to talk to the runner
+      run: |
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > MC_Key.pem
+        chmod 600 MC_Key.pem
+    - name: Run Ansible playbook
+      run: echo "Running playbook..."
+    
