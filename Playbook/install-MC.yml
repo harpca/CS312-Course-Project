@@ -23,7 +23,7 @@
 
     - name: Change Eula file
       ansible.builtin.lineinfile:
-        path: /opt/minecraft/eula.txt
+        path: /opt/Minecraft/eula.txt
         regexp: '^eula=false$'
         line: 'eula=true'
 
