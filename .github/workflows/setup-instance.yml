@@ -50,7 +50,7 @@ jobs:
       run: | 
         echo MC_IP=$(aws ec2 describe-instances \
         --instance-ids "$MC_INSTANCE" \
-        --query "Reservations[*].Instances[*].PublicIPAddress" \
+        --query "Reservations[*].Instances[*].PublicIpAddress" \
         --output text) >> "$GITHUB_ENV"
         echo "Public IP: $MC_IP"
     - name: Create hosts.ini
