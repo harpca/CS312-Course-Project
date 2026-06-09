@@ -20,7 +20,12 @@
       ansible.builtin.shell: |
         cd /opt/Minecraft
         java -Xmx1300M -Xms1300M -jar server.jar nogui
-        echo "eula=true" > eula.txt
+
+    - name: Change Eula file
+      ansible.builtin.lineinfile:
+        path: /opt/minecraft/eula.txt
+        regexp: '^eula=false$'
+        line: 'eula=true'
 
     - name: Create user
       ansible.builtin.shell: |
