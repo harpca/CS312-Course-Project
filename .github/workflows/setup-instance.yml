@@ -68,5 +68,5 @@ jobs:
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > MC_Key.pem
         chmod 600 MC_Key.pem
     - name: Run Ansible playbook
-      run: echo "Running playbook..."
+      run: ansible-playbook -i hosts.ini Playbook/install-MC.yml --private-key MC_Key.pem
     
