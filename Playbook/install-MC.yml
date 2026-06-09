@@ -1,0 +1,16 @@
+---
+- name: Install Minecraft (Java Ver.) on Amazon Linux
+  hosts: mcservers
+  become: yes
+
+  tasks:
+
+    - name: Install Java
+      dnf:
+        name: java-25-amazon-corretto-headless
+        state: present
+
+    - name: Start Minecraft server
+      service:
+        name: minecraft
+        state: started
