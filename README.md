@@ -81,6 +81,7 @@
      ┌───┴──┐                  ┌───┴──┐                                       ┌─┴─┐
      │GitHub│                  │Runner│                                       │EC2│
      └──────┘                  └──────┘                                       └───┘
+ [8]
 
 # List of Commands to Run
 - Everything is controlled from the GitHub action that runs the complete workflow. 
@@ -89,4 +90,18 @@
 - In Minecraft, go to “Multiplayer -> Add Server” and enter the MC_IP in the “Server Address” box. Click “Done” and you’re ready to connect!
 
 # References
-- 
+**[1]** *Integrating with GitHub Actions – CI/CD Pipeline to Deploy a Web App to Amazon EC2 | AWS DevOps & Developer Productivity Blog.* 29 Mar. 2022, https://aws.amazon.com/blogs/devops/integrating-with-github-actions-ci-cd-pipeline-to-deploy-a-web-app-to-amazon-ec2/. 
+
+**[2]** “Ansible with GitHub Actions: Automating Playbook Runs.” *Spacelift*, 13 Aug. 2024, https://spacelift.io/blog/github-actions-ansible. 
+
+**[3]** *Describe-Instances — AWS CLI 2.35.2 Command Reference.* https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html. 
+
+**[4]** *Instance-Running — AWS CLI 2.35.2 Command Reference.* https://docs.aws.amazon.com/cli/latest/reference/ec2/wait/instance-running.html. 
+
+**[5]** *Ansible Configuration Settings — Ansible Community Documentation.* https://docs.ansible.com/projects/ansible/latest/reference_appendices/config.html. 
+
+**[6]** *Ansible.Builtin.Shell Module – Execute Shell Commands on Targets — Ansible Community Documentation.* https://docs.ansible.com/projects/ansible/latest/collections/ansible/builtin/shell_module.html. 
+
+**[7]** *Ansible.Builtin.Lineinfile Module – Manage Lines in Text Files — Ansible Community Documentation.* https://docs.ansible.com/projects/ansible/latest/collections/ansible/builtin/lineinfile_module.html. 
+
+**[8]** Vaughan, Arwen. “PlantText - Online PlantUML Editor for Fast UML Diagrams.” *PlantText*, https://www.planttext.com/.
