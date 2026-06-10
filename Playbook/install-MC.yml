@@ -35,8 +35,18 @@
 
     - name: Create MC service file
       ansible.builtin.copy:
-        src: minecraft.service
         dest: /etc/systemd/system/minecraft.service
+        content: |
+          [Unit]
+          Description=Minecraft Server
+          After=network.target
+          [Service]
+          User=minecraft-steve
+          WorkingDirectory=/opt/Minecraft
+          ExecStart=/usr/bin/java -Xmx1300M -Xms1300M -jar server.jar nogui
+          ExecStop=/bin/kill -SIGINT $MAINPID
+          [Install]
+          WantedBy=multi-user.target
         owner: ec2-user
         group: ec2-user
         mode: '0644'
