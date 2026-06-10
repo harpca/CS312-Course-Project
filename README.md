@@ -6,11 +6,11 @@
   * **The GitHub action workflow:** ```setup-instance.yml```
     * Checks out the repository
     * Creates the EC2 instance
-    * Gets the Public IP Address and adds it to the hosts.ini file for Ansible
-    * Installs Ansible and nmap
+    * Gets the Public IP Address and adds it to the ```hosts.ini``` file for Ansible
+    * Installs Ansible and ```nmap```
     * Creates the private key
     * Runs the ```install-MC.yml``` Ansible playbook
-    * When the playbook is finished, the workflow will connect to the Minecraft server using nmap
+    * When the playbook is finished, the workflow will connect to the Minecraft server using ```nmap```
   * **The Ansible playbook:** ```install-MC.yml```
     * Downloads and installs Java and Minecraft on EC2
     * Accepts the Minecraft Eula
@@ -21,7 +21,7 @@
 ### What will the user need to configure to run the pipeline?
 - The user will need to setup the pipeline secrets in order to run the workflow. The user will also need to create a private key in their AWS account called ```MC-Key```. See the **credentials** step below to set up the secrets in GitHub.
 ### What tools should be installed?
-- The script installs Ansible, nmap, Java, and Minecraft.
+- The script installs Ansible, ```nmap```, Java, and Minecraft.
 ### Are there any credentials or CLI required?
 - The user needs to set up the pipeline secrets and add their AWS credentials to the secrests.
   * To create the secrets on GitHub from the repository homepage:
