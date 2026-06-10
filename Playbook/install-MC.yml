@@ -40,6 +40,7 @@
         owner: ec2-user
         group: ec2-user
         mode: '0644'
+        remote_src: true
 
     - name: Install MC server
       ansible.builtin.shell: |
