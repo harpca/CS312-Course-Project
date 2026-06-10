@@ -30,8 +30,8 @@
     - name: Create user
       ansible.builtin.shell: |
         sudo adduser minecraft-steve
-        chown -R minecraft-steve:minecraft-steve /opt/minecraft
-        chmod 777 /opt/minecraft
+        chown -R minecraft-steve:minecraft-steve /opt/Minecraft
+        chmod 777 /opt/Minecraft
 
     - name: Create MC service file
       copy:
