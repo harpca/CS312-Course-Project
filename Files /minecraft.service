@@ -3,7 +3,7 @@ Description=Minecraft Server
 After=network.target
 [Service]
 User=minecraft-steve
-WorkingDirectory=/opt/minecraft
+WorkingDirectory=/opt/Minecraft
 ExecStart=/usr/bin/java -Xmx1300M -Xms1300M -jar server.jar nogui
 ExecStop=/bin/kill -SIGINT $MAINPID
 [Install]
