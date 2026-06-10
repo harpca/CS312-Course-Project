@@ -56,11 +56,11 @@ jobs:
         sudo apt install -y ansible
     - name: Create private key to talk to the runner
       run: |
+        chmod -R 777 ${{ github.workspace }}
         echo "$PRIVATE_KEY" > MC-Key.pem
         chmod 600 MC-Key.pem
     - name: Run Ansible playbook
       run: |
-        chmod -R 777 ${{ github.workspace }}
         export ANSIBLE_HOST_KEY_CHECKING=False
         ansible-playbook -i hosts.ini Playbook/install-MC.yml --private-key MC-Key.pem -u ec2-user
     
