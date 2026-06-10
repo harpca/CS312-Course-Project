@@ -34,13 +34,12 @@
         chmod 777 /opt/Minecraft
 
     - name: Create MC service file
-      copy:
+      ansible.builtin.copy:
         src: ../Files/minecraft.service
         dest: /etc/systemd/system/minecraft.service
         owner: ec2-user
         group: ec2-user
         mode: '0644'
-        remote_src: true
 
     - name: Install MC server
       ansible.builtin.shell: |
