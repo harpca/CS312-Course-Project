@@ -56,8 +56,6 @@ jobs:
         sudo apt install -y ansible
     - name: Create private key to talk to the runner
       run: |
-        chmod -R 777 ${{ github.workspace }}
-        cp "${{ github.workspace }}/Files/minecraft.service" "${{ github.workspace }}/Playbook/." 
         echo "$PRIVATE_KEY" > MC-Key.pem
         chmod 600 MC-Key.pem
     - name: Run Ansible playbook
