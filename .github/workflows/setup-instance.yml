@@ -50,10 +50,11 @@ jobs:
     - name: Create hosts.ini
       run: echo -e "[mcservers]\n$MC_IP\n" > hosts.ini
       # Install and update Ansible
-    - name: Install Ansible
+    - name: Install Ansible and nmap
       run: |
         sudo apt update
         sudo apt install -y ansible
+        sudo apt install -y nmap
     - name: Create private key to talk to the runner
       run: |
         echo "$PRIVATE_KEY" > MC-Key.pem
@@ -62,4 +63,7 @@ jobs:
       run: |
         export ANSIBLE_HOST_KEY_CHECKING=False
         ansible-playbook -i hosts.ini Playbook/install-MC.yml --private-key MC-Key.pem -u ec2-user
+
+    - name: Connect to MC server
+      run: nmap -sV -Pn -p T:25565 $MC_IP
     
