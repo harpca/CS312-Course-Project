@@ -35,7 +35,7 @@
 
     - name: Create MC service file
       ansible.builtin.copy:
-        src: ../Files/minecraft.service
+        src: minecraft.service
         dest: /etc/systemd/system/minecraft.service
         owner: ec2-user
         group: ec2-user
