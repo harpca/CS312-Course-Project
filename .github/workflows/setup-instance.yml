@@ -60,6 +60,7 @@ jobs:
         chmod 600 MC-Key.pem
     - name: Run Ansible playbook
       run: |
+        chmod -R 777 ${{ github.workspace }}
         export ANSIBLE_HOST_KEY_CHECKING=False
         ansible-playbook -i hosts.ini Playbook/install-MC.yml --private-key MC-Key.pem -u ec2-user
     
